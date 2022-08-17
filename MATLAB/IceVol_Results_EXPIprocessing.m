@@ -320,24 +320,24 @@ for J = 1:length(IMF_names)
             set(legend1,'Orientation','horizontal','Location','northoutside','Interpreter','latex','FontSize',size1);
             set(gca,'FontSize',size1,'TickLabelInterpreter','latex');%,'Ylim',[0 500]); just in the case of Household 3
             xlabel('Time','interpreter','latex','FontSize',size1);
-            ylabel('Volness ($m$)','interpreter','latex','FontSize',size1);
+            ylabel('Volume ($km^3$)','interpreter','latex','FontSize',size1);
             eval(sprintf('set(gca,''Box'',''on'',''FontSize'',size1,''TickLabelInterpreter'',''latex'',''LineWidth'',0.5,''YMinorGrid'',''on'',''YMinorTick'',''on'',''TickDir'',''in'',''TickLength'',[0.005 0.005]);'))%,''YLim'',[0 max(max(table2array(%s.%s.Targets(k,:))))+(max(max(table2array(%s.%s.Targets(k,:))))*5/100)]',season{k},Horizon{H},season{k},Horizon{H}))
             for S = 1:2%length(mode)
                 eval(sprintf('errors = (%s.%s.%s.Targets(1,:))-table2array(%s.%s.%s.%s.Preds_LSTMPlus(1,:));',season{k},mode{S},Horizon{H},season{k},mode{S},Horizon{H},IMF_names{J}))
                 nexttile, eval(sprintf('t1 = stem(categorical([1:length(errors)]), errors,''Marker'',smbls{S},''MarkerEdgeColor'',clr(S,:),''MarkerSize'',10,''LineStyle'','':'',''MarkerFaceColor'',''white'',''Color'',clr(S,:),''LineWidth'',2);'))
-                ylabel('Error ($m$)','Interpreter','latex','FontSize',15)
+                ylabel('Error ($km^3$)','Interpreter','latex','FontSize',15)
                 %                 title(lgds{S},'FontSize',15,'Interpreter','latex')
                 set(gca,'FontSize',15,'TickLabelInterpreter','latex');
             end
             eval(sprintf('errors = (%s.%s.%s.Targets(1,:))-table2array(%s.%s.%s.%s.Preds_LSTMPlus(1,:));',season{k},mode{S},Horizon{H},season{k},mode{2},Horizon{H},mode{3}))
             nexttile, eval(sprintf('t1 = stem(categorical([1:length(errors)]), errors,''Marker'',smbls{3},''MarkerEdgeColor'',clr(3,:),''MarkerSize'',10,''LineStyle'','':'',''MarkerFaceColor'',''white'',''Color'',clr(3,:),''LineWidth'',2);'))
-            ylabel('Error ($m$)','Interpreter','latex','FontSize',15)
+            ylabel('Error ($km^3$)','Interpreter','latex','FontSize',15)
             %                 title(lgds{3},'FontSize',15,'Interpreter','latex')
             set(gca,'FontSize',15,'TickLabelInterpreter','latex');
             %
             eval(sprintf('errors = (%s.%s.%s.Targets(1,:))-table2array(%s.%s.%s.%s.Preds_LSTMPlus(1,:));',season{k},mode{S},Horizon{H},season{k},mode{2},Horizon{H},mode{4}))
             nexttile, eval(sprintf('t1 = stem(categorical([1:length(errors)]), errors,''Marker'',smbls{4},''MarkerEdgeColor'',clr(4,:),''MarkerSize'',10,''LineStyle'','':'',''MarkerFaceColor'',''white'',''Color'',clr(4,:),''LineWidth'',2);'))
-            ylabel('Error ($m$)','Interpreter','latex','FontSize',15)
+            ylabel('Error ($km^3$)','Interpreter','latex','FontSize',15)
             xlabel('Horizon','Interpreter','latex','FontSize',15)
             %                 title(lgds{3},'FontSize',15,'Interpreter','latex')
             set(gca,'FontSize',15,'TickLabelInterpreter','latex');            
@@ -394,24 +394,24 @@ for J = 1:length(IMF_names)
             set(legend1,'Orientation','horizontal','Location','northoutside','Interpreter','latex','FontSize',size1);
             set(gca,'FontSize',size1,'TickLabelInterpreter','latex');%,'Ylim',[0 500]); just in the case of Household 3
             xlabel('Time','interpreter','latex','FontSize',size1);
-            ylabel('Volness ($m$)','interpreter','latex','FontSize',size1);
+            ylabel('Volume ($km^3$)','interpreter','latex','FontSize',size1);
             eval(sprintf('set(gca,''Box'',''on'',''FontSize'',size1,''TickLabelInterpreter'',''latex'',''LineWidth'',0.5,''YMinorGrid'',''on'',''YMinorTick'',''on'',''TickDir'',''in'',''TickLength'',[0.005 0.005]);'))%,''YLim'',[0 max(max(table2array(%s.%s.Targets(k,:))))+(max(max(table2array(%s.%s.Targets(k,:))))*5/100)]',season{k},Horizon{H},season{k},Horizon{H}))
             for S = 1:2%length(mode)
                 eval(sprintf('errors = (%s.%s.%s.Targets(1,:))-table2array(%s.%s.%s.%s.Preds_LSTMPlus(1,:));',season{k},mode{S},Horizon{H},season{k},mode{S},Horizon{H},IMF_names{J}))
                 nexttile, eval(sprintf('t1 = stem(categorical([1:length(errors)]), errors,''Marker'',smbls{S},''MarkerEdgeColor'',clr(S,:),''MarkerSize'',10,''LineStyle'','':'',''MarkerFaceColor'',''white'',''Color'',clr(S,:),''LineWidth'',2);'))
-                ylabel('Error ($m$)','Interpreter','latex','FontSize',15)
+                ylabel('Error ($km^3$)','Interpreter','latex','FontSize',15)
                 %                 title(lgds{S},'FontSize',15,'Interpreter','latex')
                 set(gca,'FontSize',15,'TickLabelInterpreter','latex');
             end
             eval(sprintf('errors = (%s.%s.%s.Targets(1,:))-table2array(%s.%s.%s.%s.Preds_LSTMPlus(1,:));',season{k},mode{S},Horizon{H},season{k},mode{2},Horizon{H},mode{3}))
             nexttile, eval(sprintf('t1 = stem(categorical([1:length(errors)]), errors,''Marker'',smbls{3},''MarkerEdgeColor'',clr(3,:),''MarkerSize'',10,''LineStyle'','':'',''MarkerFaceColor'',''white'',''Color'',clr(3,:),''LineWidth'',2);'))
-            ylabel('Error ($m$)','Interpreter','latex','FontSize',15)
+            ylabel('Error ($km^3$)','Interpreter','latex','FontSize',15)
             %                 title(lgds{3},'FontSize',15,'Interpreter','latex')
             set(gca,'FontSize',15,'TickLabelInterpreter','latex');
             %
             eval(sprintf('errors = (%s.%s.%s.Targets(1,:))-table2array(%s.%s.%s.%s.Preds_LSTMPlus(1,:));',season{k},mode{S},Horizon{H},season{k},mode{2},Horizon{H},mode{4}))
             nexttile, eval(sprintf('t1 = stem(categorical([1:length(errors)]), errors,''Marker'',smbls{4},''MarkerEdgeColor'',clr(4,:),''MarkerSize'',10,''LineStyle'','':'',''MarkerFaceColor'',''white'',''Color'',clr(4,:),''LineWidth'',2);'))
-            ylabel('Error ($m$)','Interpreter','latex','FontSize',15)
+            ylabel('Error ($km^3$)','Interpreter','latex','FontSize',15)
             xlabel('Horizon','Interpreter','latex','FontSize',15)
             %                 title(lgds{3},'FontSize',15,'Interpreter','latex')
             set(gca,'FontSize',15,'TickLabelInterpreter','latex');            
