@@ -1,27 +1,28 @@
 function sequencesConstruction_IceThickVol(len,horizon,numberIMFs)
 % numberIMFs = 15; %[31 63 127 255];
 %% Construction of Thickness, Volume, and TS sequences
-% len = 30 + 7; %30 days + 1 day
+len = 30 + 7; %30 days + 1 day
+horizon = '7d';
 fprintf('-Processing data for %d forecasting horizons!\n',len-30);
 [TS_FallWinter, TS_SpringSummer, Thick_FallWinter, Thick_SpringSummer, Vol_FallWinter, Vol_SpringSummer] = ThickVol_ForecastData_preprocessing(len);
 
 % % fprintf('-Exporting data...');
 % % % FallWinter
-% writematrix(Thick_FallWinter,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Thicksequences_FallWinter.csv'))
-% writematrix(TS_FallWinter,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_TSsequences_FallWinter.csv'))
-% writematrix(Vol_FallWinter,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Volsequences_FallWinter.csv'))
+% writematrix(Thick_FallWinter,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Thicksequences_FallWinter.csv'))
+% writematrix(TS_FallWinter,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_TSsequences_FallWinter.csv'))
+% writematrix(Vol_FallWinter,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Volsequences_FallWinter.csv'))
 % % % SpringSummer
-% writematrix(Thick_SpringSummer,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Thicksequences_SpringSummer.csv'))
-% writematrix(TS_SpringSummer,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_TSsequences_SpringSummer.csv'))
-% writematrix(Vol_SpringSummer,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Volsequences_SpringSummer.csv'))
+% writematrix(Thick_SpringSummer,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Thicksequences_SpringSummer.csv'))
+% writematrix(TS_SpringSummer,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_TSsequences_SpringSummer.csv'))
+% writematrix(Vol_SpringSummer,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Volsequences_SpringSummer.csv'))
 % % fprintf(', finito!\n');
 
 %% Construction of decomposed sequences from input data
 clc
-%%- VMD
-% VMD_func(len, horizon, numberIMFs)
+%- VMD
+VMD_func(len, horizon, numberIMFs)
 
-%%- EMD
+%- EMD
 % find out number of IMFs for each input
 temp = eemd(Thick_SpringSummer(1,:),0,1);
 numberIMFs_Thick_SpringSummer = size(temp,2)-2;
@@ -55,7 +56,7 @@ EMD_func(len, horizon, numberIMFs_Thick_SpringSummer, numberIMFs_Thick_FallWinte
             VMD = array2table(TEMThick_FallWinter,'VariableNames',string(x));
             %compute IMFs then save into csv files
             fprintf('-Exporting VMD sequences.., ');
-            writetable(VMD,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Thicksequences_',string(numberIMFs(L)),'IMFs_FallWinter.csv'))
+            writetable(VMD,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Thicksequences_',string(numberIMFs(L)),'IMFs_FallWinter.csv'))
             fprintf('finished!\n');
         end
 
@@ -76,7 +77,7 @@ EMD_func(len, horizon, numberIMFs_Thick_SpringSummer, numberIMFs_Thick_FallWinte
             VMD = array2table(TEMThick_SpringSummer,'VariableNames',string(x));
             %compute IMFs then save into csv files
             fprintf('-Exporting VMD sequences.., ');
-            writetable(VMD,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Thicksequences_',string(numberIMFs(L)),'IMFs_SpringSummer.csv'))
+            writetable(VMD,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Thicksequences_',string(numberIMFs(L)),'IMFs_SpringSummer.csv'))
             fprintf('finished!\n');
         end
 
@@ -98,7 +99,7 @@ EMD_func(len, horizon, numberIMFs_Thick_SpringSummer, numberIMFs_Thick_FallWinte
             VMD = array2table(TEMVol_FallWinter,'VariableNames',string(x));
             %compute IMFs then save into csv files
             fprintf('-Exporting VMD sequences.., ');
-            writetable(VMD,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Volsequences_',string(numberIMFs(L)),'IMFs_FallWinter.csv'))
+            writetable(VMD,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Volsequences_',string(numberIMFs(L)),'IMFs_FallWinter.csv'))
             fprintf('finished!\n');
         end
 
@@ -119,61 +120,61 @@ EMD_func(len, horizon, numberIMFs_Thick_SpringSummer, numberIMFs_Thick_FallWinte
             VMD = array2table(TEMVol_SpringSummer,'VariableNames',string(x));
             %compute IMFs then save into csv files
             fprintf('-Exporting VMD sequences.., ');
-            writetable(VMD,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Volsequences_',string(numberIMFs(L)),'IMFs_SpringSummer.csv'))
+            writetable(VMD,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Volsequences_',string(numberIMFs(L)),'IMFs_SpringSummer.csv'))
             fprintf('finished!\n');
         end
 
     end
 
     function EMD_func(len, horizon, numberIMFs_Thick_SpringSummer, numberIMFs_Thick_FallWinter, numberIMFs_Vol_SpringSummer, numberIMFs_Vol_FallWinter)
-        %THICKNESS
-        %Fall/Winter
-        numberIMFs = numberIMFs_Thick_FallWinter;
-        clear x
-        for i = 0:len
-            x{i+1} = 'Element'+string(i);
-        end
-        for L = 1:1 %numberIMFs
-            fprintf('*Extracting %s EMD thickness fall/winter features using IMFs..\n',horizon);
-            EMD = table('Size',[length(Thick_FallWinter)*(numberIMFs(L)+1),1+len],'VariableNames',string(x),'VariableTypes','double'+strings(1,length(x)));%,'',{'single','double','double','double','double','double','double','double','double','double','double','double','double','double'});
-            EMD.Properties.VariableNames{1}='SequenceNumber';
-            TEMThick_FallWinter=ones(length(Thick_FallWinter)*(numberIMFs(L)+1),1+len);
-            for i = 1:1:length(Thick_FallWinter)
-                imf = eemd(Thick_FallWinter(i,:),0,1);% for EMD
-                res = imf(:,end);
-                imf = imf(:,2:end-1);
-                TEMThick_FallWinter(i+(numberIMFs(L))*(i-1):i+(numberIMFs(L))*(i-1)+(numberIMFs(L)),:) = [ones(numberIMFs(L)+1,1)*i,[imf';res']];%
-            end
-            EMD = array2table(TEMThick_FallWinter,'VariableNames',string(x));
-            %compute IMFs then save into csv files
-            fprintf('-Exporting EMD sequences.., ');
-            writetable(EMD,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Thicksequences_EMD',string(numberIMFs(L)),'IMFs_FallWinter.csv'))
-            fprintf('finished!\n');
-        end
-
-        %Spring/Summer
-        numberIMFs = numberIMFs_Thick_SpringSummer;
-        clear x
-        for i = 0:len
-            x{i+1} = 'Element'+string(i);
-        end
-        for L = 1:1 %numberIMFs
-            fprintf('*Extracting %s EMD thickness spring/summer features using %d IMFs..\n',horizon, numberIMFs(L));
-            EMD = table('Size',[length(Thick_SpringSummer)*(numberIMFs(L)+1),1+len],'VariableNames',string(x),'VariableTypes','double'+strings(1,length(x)));%,'',{'single','double','double','double','double','double','double','double','double','double','double','double','double','double'});
-            EMD.Properties.VariableNames{1}='SequenceNumber';
-            TEMThick_SpringSummer=ones(length(Thick_SpringSummer)*(numberIMFs(L)+1),1+len);
-            for i = 1:1:length(Thick_SpringSummer)
-                imf = eemd(Thick_SpringSummer(i,:),0,1);
-                res = imf(:,end);
-                imf = imf(:,2:end-1);
-                TEMThick_SpringSummer(i+(numberIMFs(L))*(i-1):i+(numberIMFs(L))*(i-1)+(numberIMFs(L)),:) = [ones(numberIMFs(L)+1,1)*i,[imf';res']];%
-            end
-            EMD = array2table(TEMThick_SpringSummer,'VariableNames',string(x));
-            %compute IMFs then save into csv files
-            fprintf('-Exporting EMD sequences.., ');
-            writetable(EMD,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Thicksequences_EMD',string(numberIMFs(L)),'IMFs_SpringSummer.csv'))
-            fprintf('finished!\n');
-        end
+        %         %THICKNESS
+        %         %Fall/Winter
+        %         numberIMFs = numberIMFs_Thick_FallWinter;
+        %         clear x
+        %         for i = 0:len
+        %             x{i+1} = 'Element'+string(i);
+        %         end
+        %         for L = 1:1 %numberIMFs
+        %             fprintf('*Extracting %s EMD thickness fall/winter features using IMFs..\n',horizon);
+        %             EMD = table('Size',[length(Thick_FallWinter)*(numberIMFs(L)+1),1+len],'VariableNames',string(x),'VariableTypes','double'+strings(1,length(x)));%,'',{'single','double','double','double','double','double','double','double','double','double','double','double','double','double'});
+        %             EMD.Properties.VariableNames{1}='SequenceNumber';
+        %             TEMThick_FallWinter=ones(length(Thick_FallWinter)*(numberIMFs(L)+1),1+len);
+        %             for i = 1:1:length(Thick_FallWinter)
+        %                 imf = eemd(Thick_FallWinter(i,:),0,1);% for EMD
+        %                 res = imf(:,end);
+        %                 imf = imf(:,2:end-1);
+        %                 TEMThick_FallWinter(i+(numberIMFs(L))*(i-1):i+(numberIMFs(L))*(i-1)+(numberIMFs(L)),:) = [ones(numberIMFs(L)+1,1)*i,[imf';res']];%
+        %             end
+        %             EMD = array2table(TEMThick_FallWinter,'VariableNames',string(x));
+        %             %compute IMFs then save into csv files
+        %             fprintf('-Exporting EMD sequences.., ');
+        %             writetable(EMD,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Thicksequences_EMD',string(numberIMFs(L)),'IMFs_FallWinter.csv'))
+        %             fprintf('finished!\n');
+        %         end
+        %
+        %         %Spring/Summer
+        %         numberIMFs = numberIMFs_Thick_SpringSummer;
+        %         clear x
+        %         for i = 0:len
+        %             x{i+1} = 'Element'+string(i);
+        %         end
+        %         for L = 1:1 %numberIMFs
+        %             fprintf('*Extracting %s EMD thickness spring/summer features using %d IMFs..\n',horizon, numberIMFs(L));
+        %             EMD = table('Size',[length(Thick_SpringSummer)*(numberIMFs(L)+1),1+len],'VariableNames',string(x),'VariableTypes','double'+strings(1,length(x)));%,'',{'single','double','double','double','double','double','double','double','double','double','double','double','double','double'});
+        %             EMD.Properties.VariableNames{1}='SequenceNumber';
+        %             TEMThick_SpringSummer=ones(length(Thick_SpringSummer)*(numberIMFs(L)+1),1+len);
+        %             for i = 1:1:length(Thick_SpringSummer)
+        %                 imf = eemd(Thick_SpringSummer(i,:),0,1);
+        %                 res = imf(:,end);
+        %                 imf = imf(:,2:end-1);
+        %                 TEMThick_SpringSummer(i+(numberIMFs(L))*(i-1):i+(numberIMFs(L))*(i-1)+(numberIMFs(L)),:) = [ones(numberIMFs(L)+1,1)*i,[imf';res']];%
+        %             end
+        %             EMD = array2table(TEMThick_SpringSummer,'VariableNames',string(x));
+        %             %compute IMFs then save into csv files
+        %             fprintf('-Exporting EMD sequences.., ');
+        %             writetable(EMD,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Thicksequences_EMD',string(numberIMFs(L)),'IMFs_SpringSummer.csv'))
+        %             fprintf('finished!\n');
+        %         end
 
         % VOLUME
         %Fall/Winter
@@ -195,8 +196,8 @@ EMD_func(len, horizon, numberIMFs_Thick_SpringSummer, numberIMFs_Thick_FallWinte
             end
             EMD = array2table(TEMVol_FallWinter,'VariableNames',string(x));
             %compute IMFs then save into csv files
-            fprintf('-Exporting EMD sequences.., ');
-            writetable(EMD,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Volsequences_EMD',string(numberIMFs(L)),'IMFs_FallWinter.csv'))
+            %             fprintf('-Exporting EMD sequences.., ');
+            %             writetable(EMD,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Volsequences_EMD',string(numberIMFs(L)),'IMFs_FallWinter.csv'))
             fprintf('finished!\n');
         end
 
@@ -220,7 +221,7 @@ EMD_func(len, horizon, numberIMFs_Thick_SpringSummer, numberIMFs_Thick_FallWinte
             EMD = array2table(TEMVol_SpringSummer,'VariableNames',string(x));
             %compute IMFs then save into csv files
             fprintf('-Exporting EMD sequences.., ');
-            writetable(EMD,strcat('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Volsequences_EMD',string(numberIMFs(L)),'IMFs_SpringSummer.csv'))
+            writetable(EMD,strcat('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\ICEF',horizon,'_Volsequences_EMD',string(numberIMFs(L)),'IMFs_SpringSummer.csv'))
             fprintf('finished!\n');
         end
 

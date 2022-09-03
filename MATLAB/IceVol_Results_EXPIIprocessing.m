@@ -1,7 +1,7 @@
 %% Read preds and target of VMD-empowered models
 % %Always change the mode number and which IMFs to use before running the rest of this section..
-addpath(genpath('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\results2\EXPII'))
-addpath(genpath('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\results2'))
+addpath(genpath('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\results2\EXPII'))
+addpath(genpath('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\results2'))
 clear
 clc
 season = {'SpringSummer','FallWinter'};
@@ -111,7 +111,7 @@ fprintf('\n')
 end
 clear j metric mode model season y_preds y_test ymean IMF_names Horizon i H
 %% General performance predicted against actual consumption
-addpath(genpath('C:\Users\PC GAMER\Desktop\aymane\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\results2'))
+addpath(genpath('C:\Users\mohamed.ahajjam\Desktop\UND\Defense resiliency platform\Datasets\Arctic sea forecasting\PIOMAS\results2'))
 clc
 
 % VolNESS
